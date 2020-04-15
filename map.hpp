@@ -3,6 +3,7 @@
 
 class Mapa
 {
+private:
 
 };
 

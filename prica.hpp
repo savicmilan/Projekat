@@ -3,8 +3,13 @@
 
 class Prica
 {
- private:
-     char[1000]; // stvarno ne znam kako cu ovo da izvedem
+ protected:
+     string prica; // stvarno ne znam kako cu ovo da izvedem
+ public:
+     Prica(string ss)
+     {
+         prica= ss;
+     }
 };
 
 #endif // PRICA_HPP_INCLUDED

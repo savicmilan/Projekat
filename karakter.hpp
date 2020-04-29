@@ -8,6 +8,7 @@ enum charclass {commner,noble,dancer}; // za sada imamo ovo jer me mrzi da dodaj
 class Karakter
 {
     private:
+        int id;
         char ime[16];
         int pol;
         int hp;
@@ -15,12 +16,8 @@ class Karakter
         int xp;
         int snaga;
         int magic;
-        int dex;
         int speeed;
-        int luck;
         int def;
-        int resist;
-        int charm;
         int range;
         charclass clasa;
         Oruzije orudje;

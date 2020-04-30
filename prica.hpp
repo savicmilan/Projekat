@@ -1,6 +1,8 @@
 #ifndef PRICA_HPP_INCLUDED
 #define PRICA_HPP_INCLUDED
 
+using namespace std;
+
 class Prica
 {
  protected:

@@ -5,7 +5,8 @@
 
 class Igrica
 {
-
+private:
+    int pare;
 };
 
 #endif // FE_IGRICA_HPP_INCLUDED

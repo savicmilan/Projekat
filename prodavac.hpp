@@ -16,6 +16,10 @@ public:
         cena= c;
         koliko= k;
     }
+    int getCena()
+    {
+        return cena;
+    }
 
 };
 

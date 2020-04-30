@@ -19,6 +19,14 @@ class Mod
             tez=tezz;
             smrtnost= smrtnostt;
         }
+        Tezina getTez()
+        {
+            return tez;
+        }
+        bool getSmrt()
+        {
+            return smrtnost;
+        }
 
 };
 //ovo je skroz zavrseno

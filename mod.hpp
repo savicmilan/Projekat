@@ -21,5 +21,5 @@ class Mod
         }
 
 };
-
+//ovo je skroz zavrseno
 #endif // MOD_HPP_INCLUDED

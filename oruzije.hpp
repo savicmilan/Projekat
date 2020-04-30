@@ -1,18 +1,19 @@
 #ifndef ORUZIJE_HPP_INCLUDED
 #define ORUZIJE_HPP_INCLUDED
 
-
+#include "moci.hpp"
 #define MAXX=40;
 enum vrsta {mac,luk,sekira,koplje,magija};
 
 class Oruzije
 {
 private:
+    Moc mo;
     vrsta oruzijee;
     int durability;
     int jacina;
 public:
-    Oruzije()
+    Oruzije(): Moc();
     {
         oruzijee=0;
         durability=MAXX;
@@ -53,6 +54,12 @@ public:
         jacina=jacina+x;
     }
     //ovo ostri oruzije ali malo bolje nego ono ranije, ovo bi trebalo da se otkljuca kasnije u igrici
+    void MocDown()
+    {
+        int c=mo.getDurDown();
+        durability=durability-c;
+    }
+
 };
 
 #endif // ORUZIJE_HPP_INCLUDED

@@ -59,7 +59,25 @@ public:
         int c=mo.getDurDown();
         durability=durability-c;
     }
-
+    int getJacina()const
+    {
+        return jacina;
+    }
+    int getDur()const
+    {
+        return durability;
+    }
+    void ProveriDur()
+    {
+        if(durability==0)
+        {
+            return 0;
+        }
+        else
+        {
+            return 1;
+        }
+    }
 };
 
 #endif // ORUZIJE_HPP_INCLUDED

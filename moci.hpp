@@ -15,7 +15,7 @@ protected:
 public:
     Moc()
     {
-        power+10;
+        power=10;
         vrsta=fizicka;
         durMoc=5;
         durDown=5;
@@ -34,6 +34,14 @@ public:
     int IskoristiMoc()
     {
         durMoc--;
+    }
+    int getPow()const
+    {
+        return power;
+    }
+    int getDurMoc()const
+    {
+        return durMoc;
     }
 };
 

@@ -2,7 +2,7 @@
 
 using namespace std;
 
-// ne znam da objasnim bas sta ce mi kod skroz raditi pa cu da stavim link igrice koju pravim, bice losije naravno https://www.youtube.com/watch?v=NbG2b-ckJBs
+// pna je da  bude karakter koji se seta po mapi i ubija druge likove, ponekad one ubiju i njega
 
 int main()
 {

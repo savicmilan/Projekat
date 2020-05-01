@@ -2,21 +2,47 @@
 #define BOJNOPOLJE_HPP_INCLUDED
 
 #include "karakter.hpp"
-typedef struct PozicijaKaraktera
-{
-    Karakter kaka;
-    int x;
-    int y;
-} POZICIJAKARAKTERA;
+
+//0=prazno polje
+//1= krakter je tu
+//2=zid je tu
 
 class Bojnopolje
 {
 private:
     int polje[10][10];
-    POZICIJAKARAKTERA karekteri;
-
+    Karakter kaka;
 public:
-    //void PomeriSe()
+    void popuniMapu()
+    {
+        int i,j;
+        for(i=0;i<20;i++)
+        {
+            for(j=0;j<20;j++)
+            {
+                polje[i][j]=0;
+            }
+        }
+    }
+    bool pomeriSe(int x,int y)
+    {
+        int xi,yi,r;
+        float pomocna=kaka.getPozicija();
+        xi=kaka.getPozicija();
+        yi=(pomocna*10)%10;
+        r=kaka.getRange()
+        if(((xi-x<=r)||(xi-x<=-r)&&((yi-y<=r)||(yi-y<=-r))&&polje[x][y]==0)
+        {
+            kaka.setPozicija(x,y);
+            polje[x][y]=1;
+            return true;
+        }
+        else
+        {
+            return false;
+        }
+    }
+
 
 };
 

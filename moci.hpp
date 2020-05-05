@@ -105,6 +105,7 @@ void citajMoci(Moc moc[])
             moc[i].setDurMoc(linija[k]-'0');
             k=k+2;
             moc[i].setDurDown(linija[k]-'0');
+            i++;
         }
         fajl.close();
     }

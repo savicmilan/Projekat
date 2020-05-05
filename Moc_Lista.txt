@@ -1,0 +1,4 @@
+0,Thorn,9,crnaMagija,5,0
+1,Lighning,5,belaMagija,5,0
+2,Wrath,1,fizicka,9,9
+3,Wrath of Vladimir Putin,1,fizicka,9,9

@@ -17,7 +17,8 @@ class Karakter
         int snaga;
         int magic;
         int range;
-        double pozicija;
+        int X;
+        int Y;
         charclass clasa;
         Oruzije orudje;
         Moc mocc;
@@ -33,7 +34,8 @@ class Karakter
             snaga=4+orudje.getJacina();
             magic=2+mocc.getPow();
             range=3;
-            pozicija=1,1;
+            X=1;
+            Y=1;
         }
         void proveriOruzije()
         {
@@ -55,9 +57,13 @@ class Karakter
         {
             return pozicija;
         }
-        void setPozicija(int x, int y)
+        void setX(int xx)
         {
-            pozicija=x+(y%10);
+           X=xx;
+        }
+        void setY(int yy)
+        {
+            Y=yy;
         }
         void getRange()
         {

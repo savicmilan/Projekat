@@ -33,7 +33,8 @@ public:
         r=kaka.getRange()
         if(((xi-x<=r)||(xi-x<=-r)&&((yi-y<=r)||(yi-y<=-r))&&polje[x][y]==0)
         {
-            kaka.setPozicija(x,y);
+            kaka.setX(x);
+            kaka.setY(y);
             polje[x][y]=1;
             return true;
         }

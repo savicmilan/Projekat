@@ -1,7 +1,9 @@
 #ifndef MOD_HPP_INCLUDED
 #define MOD_HPP_INCLUDED
 
-enum Tezina (lako, normalno, tesko};
+using namespace std;
+
+enum Tezina{lako, normalno, tesko};
 
 class Mod
 {
@@ -11,7 +13,7 @@ class Mod
     public:
         Mod()
         {
-            tez=1;
+            tez=normalno;
             smrtnost=false;
         }
         Mod(Tezina tezz, bool smrtnostt)

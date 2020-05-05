@@ -27,11 +27,10 @@ public:
     bool pomeriSe(int x,int y)
     {
         int xi,yi,r;
-        float pomocna=kaka.getPozicija();
-        xi=kaka.getPozicija();
-        yi=(pomocna*10)%10;
-        r=kaka.getRange()
-        if(((xi-x<=r)||(xi-x<=-r)&&((yi-y<=r)||(yi-y<=-r))&&polje[x][y]==0)
+        xi=kaka.getX();
+        yi=kaka.getY();
+        r=kaka.getRange();
+        if(((xi-x<=r)||(xi-x<=-r)&&((yi-y<=r)||(yi-y<=-r))&&polje[x][y]==0))
         {
             kaka.setX(x);
             kaka.setY(y);

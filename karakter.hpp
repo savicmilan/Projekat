@@ -1,7 +1,7 @@
 #ifndef KARAKTER_HPP_INCLUDED
 #define KARAKTER_HPP_INCLUDED
 
-#include "moc";
+#include "moci.hpp";
 #include "oruzije.hpp"
 enum charclass {commner,noble,dancer}; // za sada imamo ovo jer me mrzi da dodajem jos 20+ koji se dobijaju na razlicite nacine
 
@@ -9,7 +9,7 @@ class Karakter
 {
     private:
         int id;
-        char ime[16];
+        string ime;
         int pol;
         int hp;
         int level;
@@ -23,7 +23,7 @@ class Karakter
         Oruzije orudje;
         Moc mocc;
     public:
-        Karakter():Oruzije(),Moc()
+        Karakter(),Oruzije(),Moc()
         {
             id=1;
             ime="Djura";
@@ -39,7 +39,7 @@ class Karakter
         }
         void proveriOruzije()
         {
-            int c=orudje.ProveriDur()
+            int c=orudje.ProveriDur();
             if(c==0)
             {
                 snaga=snaga-orudje.getJacina();
@@ -47,15 +47,19 @@ class Karakter
         }
         void proveriMoc()
         {
-            int cc=mocc.getDurMoc()
+            int cc=mocc.getDurMoc();
             if(cc==0)
             {
                 magic=magic-mocc.getPow();
             }
         }
-        void getPozicija()
+        int getX()
         {
-            return pozicija;
+            return X;
+        }
+        int getY()
+        {
+            return Y;
         }
         void setX(int xx)
         {
@@ -65,7 +69,7 @@ class Karakter
         {
             Y=yy;
         }
-        void getRange()
+        int getRange()
         {
             return range;
         }

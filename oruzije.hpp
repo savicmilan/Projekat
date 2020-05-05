@@ -2,7 +2,7 @@
 #define ORUZIJE_HPP_INCLUDED
 
 #include "moci.hpp"
-#define MAXX=40;
+#define MAXX 40
 enum vrsta {mac,luk,sekira,koplje,magija};
 
 class Oruzije
@@ -13,19 +13,19 @@ private:
     int durability;
     int jacina;
 public:
-    Oruzije(): Moc();
+    Oruzije(),Moc()
     {
-        oruzijee=0;
+        oruzijee=mac;
         durability=MAXX;
         jacina=6;
     }
-    Oruzije(vrsta or, int dd, int jj)
+    Oruzije(vrsta oruz, int dd, int jj)
     {
-        oruzijee=or;
+        oruzijee=oruz;
         durability=dd;
         jacina=jj;
     }
-    Oruzije(const Oruzije o)
+    Oruzije(const Oruzije& o)
     {
         oruzijee=o.oruzijee;
         durability=o.durability;
@@ -67,7 +67,7 @@ public:
     {
         return durability;
     }
-    void ProveriDur()
+    int ProveriDur()
     {
         if(durability==0)
         {

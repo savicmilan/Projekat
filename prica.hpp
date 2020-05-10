@@ -8,9 +8,18 @@ class Prica
  protected:
      string prica; // stvarno ne znam kako cu ovo da izvedem
  public:
+     Prica()
+     {
+         prica="Djuro je popio vodu";
+     }
      Prica(string ss)
      {
          prica= ss;
+     }
+     friend ostream& operator<<(ostream& izlaz, const Prica& p)
+     {
+         izlaz<<p.prica<<endl;
+         return izlaz;
      }
 };
 

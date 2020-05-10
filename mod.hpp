@@ -29,7 +29,11 @@ class Mod
         {
             return smrtnost;
         }
-
+        friend ostream& operator<<(ostream& izlaz, Mod& m)
+        {
+            izlaz<<m.smrtnost<<endl<<m.tez<<endl;
+            return izlaz;
+        }
 };
 //ovo je skroz zavrseno
 #endif // MOD_HPP_INCLUDED

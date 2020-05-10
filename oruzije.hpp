@@ -13,7 +13,7 @@ private:
     int durability;
     int jacina;
 public:
-    Oruzije(),Moc()
+    Oruzije()
     {
         oruzijee=mac;
         durability=MAXX;
@@ -77,6 +77,11 @@ public:
         {
             return 1;
         }
+    }
+    friend ostream& operator<<(ostream& izlaz, Oruzije& o)
+    {
+        izlaz<<o.mo<<endl<<o.oruzijee<<endl<<o.durability<<endl<<o.jacina<<endl;
+        return izlaz;
     }
 };
 

@@ -1,13 +1,15 @@
 #ifndef KARAKTER_HPP_INCLUDED
 #define KARAKTER_HPP_INCLUDED
 
+using namespace std;
+
 #include "moci.hpp";
 #include "oruzije.hpp"
 enum charclass {commner,noble,dancer}; // za sada imamo ovo jer me mrzi da dodajem jos 20+ koji se dobijaju na razlicite nacine
 
 class Karakter
 {
-    private:
+    protected:
         int id;
         string ime;
         int pol;
@@ -16,14 +18,14 @@ class Karakter
         int xp;
         int snaga;
         int magic;
-        int range;
+        static int range;
         int X;
         int Y;
         charclass clasa;
         Oruzije orudje;
         Moc mocc;
     public:
-        Karakter(),Oruzije(),Moc()
+        Karakter()
         {
             id=1;
             ime="Djura";
@@ -33,7 +35,6 @@ class Karakter
             xp=0;
             snaga=4+orudje.getJacina();
             magic=2+mocc.getPow();
-            range=3;
             X=1;
             Y=1;
         }

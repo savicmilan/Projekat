@@ -11,6 +11,11 @@ protected:
     int cena;
     int koliko;
 public:
+    Prodavac()
+    {
+        cena=1000;
+        koliko=10;
+    }
     Prodavac(vrsta v, int d, int j, int c, int k): proizvod(v,d,j)
     {
         cena= c;
@@ -20,7 +25,13 @@ public:
     {
         return cena;
     }
-
+    friend ostream& operator<<(ostream& izlaz, Prodavac& p)
+    {
+        izlaz<<p.cena<<endl;
+        izlaz<<p.koliko<<endl;
+        izlaz<<p.proizvod<<endl;
+        return izlaz;
+    }
 };
 
 class Misija: public Prodavac

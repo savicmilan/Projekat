@@ -17,7 +17,7 @@ protected:
 public:
     Moc()
     {
-        int id=0;
+        id=0;
         ime="EXPUROSION";
         power=10;
         vrsta=crnaMagija;
@@ -73,9 +73,14 @@ public:
     {
         durDown=DD;
     }
+    friend ostream& operator<<(ostream& izlaz, Moc& m)
+    {
+        izlaz<<endl<<m.id<<endl<<m.ime<<endl<<m.power<<endl<<m.vrsta<<endl<<m.durMoc<<endl<<m.durDown<<endl;
+        return izlaz;
+    }
 };
 
-void citajMoci(Moc moc[])
+void vadiFajl(Moc moc[])
 {
     string ime="Moc_Lista.txt";
     string linija;
@@ -114,5 +119,24 @@ void citajMoci(Moc moc[])
         cout << "Error #1";
 
 }
+void citajFaijlMoci(Moc moc[])
+{
+    string ime="Moc_Lista.txt";
+    string linija;
+    string pomocna;
+    ifstream fajl (ime);
+    if (fajl.is_open())
+    {
+        while ( getline (fajl,linija) )
+        {
+            cout << linija << '\n';
 
+        }
+        fajl.close();
+    }
+
+    else
+        cout << "Error #1";
+
+}
 #endif // MOCI_HPP_INCLUDED

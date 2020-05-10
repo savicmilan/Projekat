@@ -12,12 +12,26 @@ using namespace std;
 #include "prica.hpp"
 #include "prodavac.hpp"
 
-
+int Karakter::range=3;
 
 int main()
 {
     cout << "Hello world!" << endl;
     Moc djuro[3];
-    citajMoci(djuro);
+    citajFaijlMoci(djuro);
+    //citajMoci(djuro);
+    Prica pero;
+    cout<<pero;
+    Mod m;
+    cout<<m;
+    Moc MM;
+    cout<<MM;
+    Prodavac Pero;
+    cout<<Pero;
+    Oruzije o;
+    cout<< o;
+    Karakter djoko;
+    int i=djoko.getRange();
+    cout<<endl<<i;
     return 0;
 }

@@ -9,7 +9,8 @@
 
 class Bojnopolje
 {
-private:
+protected:
+    int id;
     int polje[10][10];
     Karakter kaka;
 public:
@@ -30,7 +31,7 @@ public:
         xi=kaka.getX();
         yi=kaka.getY();
         r=kaka.getRange();//OVDE SE KORISTI STATICKO POLJE
-        if(((xi-x<=r)||(xi-x<=-r) && ((yi-y<=r)||(yi-y<=-r)) && polje[x][y]==0))
+        if(((xi-x<=r)||(xi-x<=-r)) && ((yi-y<=r)||(yi-y<=-r)) && polje[x][y]==0)
         {
             kaka.setX(x);
             kaka.setY(y);
@@ -42,8 +43,22 @@ public:
             return false;
         }
     }
-
-
+    int getID()const
+    {
+        return id;
+    }
+    void ispis()
+    {
+        int i=0, j=0;
+        for(;i<10;i++)
+        {
+            for(;j<10;j++)
+            {
+                cout<<polje[i][j]<<',';
+            }
+            cout<<endl;
+        }
+    }
 };
 
 #endif // BOJNOPOLJE_HPP_INCLUDED

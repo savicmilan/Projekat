@@ -21,6 +21,31 @@ class Prica
          izlaz<<p.prica<<endl;
          return izlaz;
      }
+     virtual void Ispisi()
+     {
+         cout<<prica;
+     }
+};
+class PricaMisija: public Prica
+{
+protected:
+    bool uradjena;
+public:
+    PiracMisija(bool bb)
+    {
+        uradjena=bb;
+    }
+    void Ispisi()
+    {
+        if(uradjena==true)
+        {
+            cout<<"Misija je uradjena";
+        }
+        else
+        {
+            cout<<"Treba uraditi misiju: "<<endl<<prica;
+        }
+    }
 };
 
 #endif // PRICA_HPP_INCLUDED

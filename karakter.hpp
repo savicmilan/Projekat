@@ -77,10 +77,14 @@ class Karakter
         {
             hp=h;
         }
+        void setJacina(int pow)
+        {
+            snaga=pow;
+        }
 };
 void ucitajKaratere(Karakter& k, int BrojLinije)
 {
-        string n="Oruzije_lista.txt";
+        string n="Karater.txt";
         string linija;
         vector<string> result;
         ifstream fajl (n);
@@ -100,7 +104,13 @@ void ucitajKaratere(Karakter& k, int BrojLinije)
                     k.setHP(x);
                     x=stoi(result[3]);
                     k.setLVL(x);
-
+                    x=stoi(result[4]);
+                    k.setJacina(x);
+                    x=stoi(result[5]);
+                    k.setX(x);
+                    x=stoi(result[6]);
+                    k.setY(x);
+                    x=stoi(result[7]);
                     ucitajOruzije(k.orudje,x,k.orudje.mo);
                 }
                 i++;

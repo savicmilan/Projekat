@@ -1,4 +1,3 @@
-0,Thorn,9,5,0
-1,Lighning,5,5,0
-2,Wrath,1,9,9
-3,Wrath of Vladimir Putin,1,9,9
+0,Bonk,9,5,0
+1,Baci,5,5,0
+2,Wrath of Vladimir Putin,1,9,9

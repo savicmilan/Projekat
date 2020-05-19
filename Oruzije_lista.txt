@@ -1,1 +1,3 @@
-1,Sexy Staff,10,69,3
+0,Sexy Staff,10,69,2
+1,Prazna Flasa Piva,2,99,0
+2,Svastika shuriken,10,10,1

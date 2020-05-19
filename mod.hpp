@@ -31,7 +31,7 @@ class Mod
         }
         friend ostream& operator<<(ostream& izlaz, Mod& m)
         {
-            izlaz<<m.smrtnost<<endl<<m.tez<<endl;
+            izlaz<<m.smrtnost<<','<<m.tez<<endl;
             return izlaz;
         }
 };

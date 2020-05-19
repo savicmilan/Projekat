@@ -3,38 +3,29 @@
 
 using namespace std;
 
-#include "moci.hpp";
 #include "oruzije.hpp"
-enum charclass {commner,noble,dancer}; // za sada imamo ovo jer me mrzi da dodajem jos 20+ koji se dobijaju na razlicite nacine
 
 class Karakter
 {
     protected:
         int id;
         string ime;
-        int pol;
         int hp;
         int level;
-        int xp;
         int snaga;
-        int magic;
         static int range;
         int X;
         int Y;
-        charclass clasa;
-        Oruzije orudje;
-        Moc mocc;
+
     public:
+        Oruzije orudje;
         Karakter()
         {
             id=1;
             ime="Djura";
-            pol=0;
             hp= 30;
             level=1;
-            xp=0;
             snaga=4+orudje.getJacina();
-            magic=2+mocc.getPow();
             X=1;
             Y=1;
         }
@@ -46,13 +37,21 @@ class Karakter
                 snaga=snaga-orudje.getJacina();
             }
         }
-        void proveriMoc()
+        void setId(int idd)
         {
-            int cc=mocc.getDurMoc();
-            if(cc==0)
-            {
-                magic=magic-mocc.getPow();
-            }
+            id=idd;
+        }
+        void setIme(string cx)
+        {
+            ime=cx;
+        }
+        void setLVL(int lvl)
+        {
+            level=lvl;
+        }
+        void setSnaga(int pow)
+        {
+            snaga=pow;
         }
         int getX()
         {
@@ -74,6 +73,41 @@ class Karakter
         {
             return range;
         }
+        void setHP(int h)
+        {
+            hp=h;
+        }
 };
+void ucitajKaratere(Karakter& k, int BrojLinije)
+{
+        string n="Oruzije_lista.txt";
+        string linija;
+        vector<string> result;
+        ifstream fajl (n);
+        int i=0;
+        int x;
+        if (fajl.is_open())
+        {
+            while ( getline (fajl,linija) && i<BrojLinije) //you need to refine this its not finished yet
+            {
+                if (linija!="")
+                {
+                    result = splitSen(linija);
+                    x=stoi(result[0]);
+                    k.setId(x);
+                    k.setIme(result[1]);
+                    x=stoi(result[2]);
+                    k.setHP(x);
+                    x=stoi(result[3]);
+                    k.setLVL(x);
 
+                    ucitajOruzije(k.orudje,x,k.orudje.mo);
+                }
+                i++;
+            }
+            fajl.close();
+        }
+        else
+            cout << "Error 1";
+}
 #endif // KARAKTER_HPP_INCLUDED

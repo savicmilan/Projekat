@@ -3,23 +3,23 @@
 
 #include "moci.hpp"
 #define MAXX 40
-enum vrsta {mac,luk,sekira,koplje,magija};
 
 class Oruzije
 {
 private:
-    Moc mo;
-    vrsta oruzijee;
+    int id;
+    string oruzijee;
     int durability;
     int jacina;
 public:
+    Moc mo;
     Oruzije()
     {
-        oruzijee=mac;
+        oruzijee="mac";
         durability=MAXX;
         jacina=6;
     }
-    Oruzije(vrsta oruz, int dd, int jj)
+    Oruzije(string oruz, int dd, int jj)
     {
         oruzijee=oruz;
         durability=dd;
@@ -78,11 +78,68 @@ public:
             return 1;
         }
     }
+    void setDur(int d)
+    {
+        durability=d;
+    }
+    void setIme(string v)
+    {
+        oruzijee=v;
+    }
+    void setJacina(int j)
+    {
+        jacina=j;
+    }
+    void setId(int idd)
+    {
+        id=idd;
+    }
+    Moc getMoc()const
+    {
+        return mo;
+    }
     friend ostream& operator<<(ostream& izlaz, Oruzije& o)
     {
-        izlaz<<o.mo<<endl<<o.oruzijee<<endl<<o.durability<<endl<<o.jacina<<endl;
+        izlaz<<o.id<<','<<o.oruzijee<<','<<o.durability<<','<<o.jacina<<','<<o.mo;
         return izlaz;
+    }
+    void ispisi()
+    {
+        cout<<id<<oruzijee<<durability<<jacina;
     }
 };
 
+
+void ucitajOruzije(Oruzije& o, int BrojLinije, Moc& mo)
+{
+        string n="Oruzije_lista.txt";
+        string linija;
+        vector<string> result;
+        ifstream fajl (n);
+        int i=0;
+        int x;
+        if (fajl.is_open())
+        {
+            while ( getline (fajl,linija) && i<BrojLinije) //you need to refine this its not finished yet
+            {
+                if (linija!="")
+                {
+                    result = splitSen(linija);
+                    x=stoi(result[0]);
+                    o.setId(x);
+                    o.setIme(result[1]);
+                    x=stoi(result[2]);
+                    o.setDur(x);
+                    x=stoi(result[3]);
+                    o.setJacina(x);
+                    x=stoi(result[4]);
+                    ucitajMoci(o.mo,x);
+                }
+                i++;
+            }
+            fajl.close();
+        }
+        else
+            cout << "Error 1";
+}
 #endif // ORUZIJE_HPP_INCLUDED

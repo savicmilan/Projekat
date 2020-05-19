@@ -31,7 +31,7 @@ class PricaMisija: public Prica
 protected:
     bool uradjena;
 public:
-    PiracMisija(bool bb)
+    void PiracMisija(bool bb)
     {
         uradjena=bb;
     }

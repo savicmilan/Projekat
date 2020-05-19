@@ -11,15 +11,15 @@ class Bojnopolje
 {
 protected:
     int id;
-    int polje[10][10];
+    int polje[11][11];
     Karakter kaka;
 public:
     void popuniMapu()
     {
         int i,j;
-        for(i=0;i<20;i++)
+        for(i=0;i<11;i++)
         {
-            for(j=0;j<20;j++)
+            for(j=0;j<11;j++)
             {
                 polje[i][j]=0;
             }
@@ -47,12 +47,18 @@ public:
     {
         return id;
     }
+    void CharStartPlace()
+    {
+        polje[5][5];
+        kaka.setX(5);
+        kaka.setY(5);
+    }
     void ispis()
     {
-        int i=0, j=0;
-        for(;i<10;i++)
+        int i, j;
+        for(i=0;i<10;i++)
         {
-            for(;j<10;j++)
+            for(j=0;j<10;j++)
             {
                 cout<<polje[i][j]<<',';
             }

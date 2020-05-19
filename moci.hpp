@@ -3,7 +3,7 @@
 #include <fstream>
 using namespace std;
 
-enum vrstaMoci{fizicka,belaMagija,crnaMagija};
+#include "splitsen.hpp"
 
 class Moc
 {
@@ -11,7 +11,6 @@ protected:
     int id;
     string ime;
     int power; //ponestalo mi je srpskih reci za snagu/jacuni
-    vrstaMoci vrsta;
     int durMoc;
     int durDown;
 public:
@@ -20,16 +19,14 @@ public:
         id=0;
         ime="EXPUROSION";
         power=10;
-        vrsta=crnaMagija;
         durMoc=5;
         durDown=5;
     }
-    Moc(int idd, string s, int p, vrstaMoci v,int dM,int dD)
+    Moc(int idd, string s, int p,int dM,int dD)
     {
         id=idd;
         ime=s;
         power=p;
-        vrsta=v;
         durMoc=dM;
         durDown=dD;
     }
@@ -61,10 +58,6 @@ public:
     {
         power=pow;
     }
-    void setVrsta(vrstaMoci vrstaa)
-    {
-        vrsta=vrstaa;
-    }
     void setDurMoc(int DM)
     {
         durMoc=DM;
@@ -75,49 +68,42 @@ public:
     }
     friend ostream& operator<<(ostream& izlaz, Moc& m)
     {
-        izlaz<<endl<<m.id<<endl<<m.ime<<endl<<m.power<<endl<<m.vrsta<<endl<<m.durMoc<<endl<<m.durDown<<endl;
+        izlaz<<m.id<<','<<m.ime<<','<<m.power<<','<<m.durMoc<<','<<m.durDown<<endl;
         return izlaz;
     }
+
+
 };
-
-void vadiFajl(Moc moc[])
+void ucitajMoci(Moc& m, int BrojLinije)
 {
-    string ime="Moc_Lista.txt";
-    string linija;
-    string pomocna;
-    ifstream fajl (ime);
-    int i=0,k=0,j=0;
-    if (fajl.is_open())
-    {
-        while ( getline (fajl,linija) )
+        string n="Moc_Lista.txt";
+        string linija;
+        vector<string> result;
+        ifstream fajl (n);
+        int i=0;
+        if (fajl.is_open())
         {
-            cout << linija << '\n';
-            moc[i].setID(linija[0]-'0');
-
-            for(k=2; linija[k]!=',';k++ && j++)
+            while ( getline (fajl,linija) && i<BrojLinije) //you need to refine this its not finished yet
             {
-                pomocna[j]=linija[k];
+                if (linija!="")
+                {
+                    result = splitSen(linija);
+                    int x=stoi(result[0]);
+                    m.setID(x);
+                    m.setIme(result[1]);
+                    x=stoi(result[2]);
+                    m.setPow(x);
+                    x=stoi(result[3]);
+                    m.setDurMoc(x);
+                    x=stoi(result[4]);
+                    m.setDurDown(x);
+                }
+                i++;
             }
-            moc[i].setIme(pomocna);
-            k=k+1;
-            moc[i].setPow(linija[k]-'0');
-            k=k+2;
-            for(j=0;linija[k]!=',';k++ && j++)
-            {
-                pomocna[j]=linija[k];
-            }
-            k++;
-            moc[i].setDurMoc(linija[k]-'0');
-            k=k+2;
-            moc[i].setDurDown(linija[k]-'0');
-            i++;
+            fajl.close();
         }
-        fajl.close();
-    }
-
-    else
-        cout << "Error #1";
-
+        else
+            cout << "Error 1";
 }
 void citajFaijlMoci(Moc moc[])
 {

@@ -12,7 +12,7 @@ using namespace std;
 #include "prica.hpp"
 #include "prodavac.hpp"
 
-int Karakter::range=3;
+int Karakter::range=2;
 
 int main()
 {

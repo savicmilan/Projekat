@@ -16,7 +16,6 @@ class Karakter
         static int range;
         int X;
         int Y;
-
     public:
         Oruzije orudje;
         Karakter()
@@ -36,6 +35,10 @@ class Karakter
             {
                 snaga=snaga-orudje.getJacina();
             }
+        }
+        void smanjiHP(int hpminus)
+        {
+            hp=hp-hpminus;
         }
         void setId(int idd)
         {
@@ -81,6 +84,25 @@ class Karakter
         {
             snaga=pow;
         }
+        int getSnaga()const
+        {
+            return snaga;
+        }
+        int getOrudjeid()
+        {
+            int x;
+            x=orudje.getId();
+            return x;
+        }
+        friend ostream& operator<<(ostream& izlaz, Karakter& k)
+        {
+            izlaz<<k.id<<','<<k.ime<<','<<k.hp<<','<<k.level<<','<<k.snaga<<','<<k.X<<','<<k.Y<<',';
+            return izlaz;
+        }
+        int getHp()
+        {
+            return hp;
+        }
 };
 void ucitajKaratere(Karakter& k, int BrojLinije)
 {
@@ -92,7 +114,7 @@ void ucitajKaratere(Karakter& k, int BrojLinije)
         int x;
         if (fajl.is_open())
         {
-            while ( getline (fajl,linija) && i<BrojLinije) //you need to refine this its not finished yet
+            while ( getline (fajl,linija) && i<=BrojLinije) //you need to refine this its not finished yet
             {
                 if (linija!="")
                 {
@@ -105,13 +127,14 @@ void ucitajKaratere(Karakter& k, int BrojLinije)
                     x=stoi(result[3]);
                     k.setLVL(x);
                     x=stoi(result[4]);
-                    k.setJacina(x);
                     x=stoi(result[5]);
                     k.setX(x);
                     x=stoi(result[6]);
                     k.setY(x);
                     x=stoi(result[7]);
-                    ucitajOruzije(k.orudje,x,k.orudje.mo);
+                    ucitajOruzije(k.orudje,x);
+                    x=x+k.orudje.getJacina();
+                    k.setJacina(x);
                 }
                 i++;
             }

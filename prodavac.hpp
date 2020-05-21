@@ -9,17 +9,14 @@ class Prodavac
 protected:
     Oruzije proizvod;
     int cena;
-    int koliko;
 public:
     Prodavac()
     {
         cena=1000;
-        koliko=10;
     }
-    Prodavac(string v, int d, int j, int c, int k): proizvod(v,d,j)
+    Prodavac(string v, int d, int j, int c): proizvod(v,d,j)
     {
         cena= c;
-        koliko= k;
     }
     int getCena()
     {
@@ -28,7 +25,6 @@ public:
     friend ostream& operator<<(ostream& izlaz, Prodavac& p)
     {
         izlaz<<p.cena<<endl;
-        izlaz<<p.koliko<<endl;
         izlaz<<p.proizvod<<endl;
         return izlaz;
     }
@@ -39,7 +35,7 @@ class Misija: public Prodavac
 protected:
     Prica pric;
 public:
-    Misija(string v, int d, int j, int c, int k, string s): Prodavac(v,d,j,c,k),pric(s)
+    Misija(string v, int d, int j, int c,string s): Prodavac(v,d,j,c),pric(s)
     {
 
     }

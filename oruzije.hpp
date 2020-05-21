@@ -100,17 +100,21 @@ public:
     }
     friend ostream& operator<<(ostream& izlaz, Oruzije& o)
     {
-        izlaz<<o.id<<','<<o.oruzijee<<','<<o.durability<<','<<o.jacina<<','<<o.mo;
+        izlaz<<o.id<<','<<o.oruzijee<<','<<o.durability<<','<<o.jacina<<',';
         return izlaz;
     }
     void ispisi()
     {
         cout<<id<<oruzijee<<durability<<jacina;
     }
+    int getId()
+    {
+        return id;
+    }
 };
 
 
-void ucitajOruzije(Oruzije& o, int BrojLinije, Moc& mo)
+void ucitajOruzije(Oruzije& o, int BrojLinije)
 {
         string n="Oruzije_lista.txt";
         string linija;
@@ -120,7 +124,7 @@ void ucitajOruzije(Oruzije& o, int BrojLinije, Moc& mo)
         int x;
         if (fajl.is_open())
         {
-            while ( getline (fajl,linija) && i<BrojLinije) //you need to refine this its not finished yet
+            while ( getline (fajl,linija) && i<=BrojLinije) //you need to refine this its not finished yet
             {
                 if (linija!="")
                 {

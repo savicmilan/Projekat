@@ -9,8 +9,8 @@ class Igrica
 {
 protected:
     int pare;
-    vector<Bojnopolje*> SaveFile;
 public:
+    vector<Bojnopolje*> SaveFile;
     Igrica()
     {
         pare=0;
@@ -55,7 +55,7 @@ public:
 };
 
 void PressEnterToContinue()
-{
+    {
     cout<<"Press any key plus enter to continue"<<endl;
     char x;
     cin>>x;
@@ -68,18 +68,52 @@ int MainMenu()
     cin>>x;
     return x;
 }
-int chooseSavefile()
+void chooseSavefile(int& x)
 {
     cout<<"choose savefile 1,2 or 3"<<endl;
-    int x;
     cin>>x;
-    return x;
+    x--;
 }
+void upisisve(Karakter kaka, int i)
+{
+    ofstream fajl;
+    int x;
+    if(i==0)
+    {
+    fajl.open("Karater.txt");
+    x=kaka.orudje.getId();
+    fajl<< kaka << x;
+    fajl.close();
 
+    fajl.open("Oruzije_lista.txt");
+    x=kaka.orudje.mo.getID();
+    fajl<< kaka.orudje << x;
+    fajl.close();
+
+    fajl.open("Moc_Lista.txt");
+    fajl<< kaka.orudje.mo;
+    fajl.close();
+    }
+    else
+    {
+    fajl.open("Karater.txt",ios_base::app);
+    fajl<<kaka<<kaka.orudje.getId();
+    fajl.close();
+
+    fajl.open("Oruzije_lista.txt",ios_base::app);
+    fajl<<kaka.orudje<<kaka.orudje.mo.getID();
+    fajl.close();
+
+    fajl.open("Moc_Lista.txt",ios_base::app);
+    fajl<<kaka.orudje.mo;
+    fajl.close();
+    }
+}
 
 
 void zapocniIgricu()
 {
+    int rad,i;
     Igrica projeka;
     Bojnopolje SaveFile1;
     Bojnopolje SaveFile2;
@@ -96,10 +130,64 @@ void zapocniIgricu()
     {
         return;
     }
-    SAVEFILENB=chooseSavefile();
+    chooseSavefile(SAVEFILENB);
+    //SAVEFILENB-=1;
     system("cls");
-    PressEnterToContinue();
+    //PressEnterToContinue();
     system("cls");
-
+    ucitajKaratere(projeka.SaveFile[SAVEFILENB]->kaka,SAVEFILENB);
+    projeka.SaveFile[SAVEFILENB]->CharStartPlaceNivo1();
+    int hpkara=projeka.SaveFile[SAVEFILENB]->kaka.getHp();
+    int pozicija1,pozicija2,uspesno2,pom=0;
+    bool uspesno;
+    do
+    {
+        projeka.SaveFile[SAVEFILENB]->ispis();
+        cout<<"Informacije o karakteru"<<endl;
+        cout<<"id: Ime: HP: LVL: Attack: X: Y:"<<endl;
+        cout<<projeka.SaveFile[SAVEFILENB]->kaka<<endl;
+        cout<<"izaberi radnju"<<endl<<"1) Pomeranje"<<endl<<"2) napad"<<endl<<"3) Iskoristi moc"<<endl;
+        cin>>rad;
+        switch(rad)
+        {
+        case 1:
+            {
+                cin>>pozicija1;
+                cin>>pozicija2;
+                uspesno=projeka.SaveFile[SAVEFILENB]->pomeriSe(pozicija1,pozicija2);
+                break;
+            }
+        case 2:
+            {
+                cin>>pozicija1;
+                cin>>pozicija2;
+                uspesno2=projeka.SaveFile[SAVEFILENB]->Napadni(pozicija1,pozicija2);
+                if(uspesno2==1)
+                {
+                    pom++;
+                }
+                hpkara=projeka.SaveFile[SAVEFILENB]->kaka.getHp();
+                break;
+            }
+        case 3:
+            {
+                cin>>pozicija1;
+                cin>>pozicija2;
+                uspesno2=projeka.SaveFile[SAVEFILENB]->NapadniSMoc(pozicija1,pozicija2);
+                if(uspesno2==1)
+                {
+                    pom++;
+                }
+                hpkara=projeka.SaveFile[SAVEFILENB]->kaka.getHp();
+                break;
+            }
+        }
+        //system("cls");
+    }while(rad!=0 && hpkara>0 && pom<4);
+    for(i=0;i<SAVEFILENB;i++)
+    {
+        Karakter k=projeka.SaveFile[i]->kaka;
+        upisisve(k,i);
+    }
 }
 #endif // FE_IGRICA_HPP_INCLUDED

@@ -30,6 +30,10 @@ public:
         durMoc=dM;
         durDown=dD;
     }
+    int getID()const
+    {
+        return id;
+    }
     int getDurDown()const
     {
         return durDown;
@@ -66,6 +70,7 @@ public:
     {
         durDown=DD;
     }
+
     friend ostream& operator<<(ostream& izlaz, Moc& m)
     {
         izlaz<<m.id<<','<<m.ime<<','<<m.power<<','<<m.durMoc<<','<<m.durDown<<endl;
@@ -83,7 +88,7 @@ void ucitajMoci(Moc& m, int BrojLinije)
         int i=0;
         if (fajl.is_open())
         {
-            while ( getline (fajl,linija) && i<BrojLinije) //you need to refine this its not finished yet
+            while ( getline (fajl,linija) && i<=BrojLinije) //you need to refine this its not finished yet
             {
                 if (linija!="")
                 {

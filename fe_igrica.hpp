@@ -77,35 +77,36 @@ void chooseSavefile(int& x)
 void upisisve(Karakter kaka, int i)
 {
     ofstream fajl;
+    cout<<"i am a pice of garbage";
     int x;
     if(i==0)
     {
     fajl.open("Karater.txt");
     x=kaka.orudje.getId();
-    fajl<< kaka << x;
+    fajl<< kaka << x<<endl;
     fajl.close();
 
     fajl.open("Oruzije_lista.txt");
     x=kaka.orudje.mo.getID();
-    fajl<< kaka.orudje << x;
+    fajl<< kaka.orudje << x<<endl;
     fajl.close();
 
     fajl.open("Moc_Lista.txt");
-    fajl<< kaka.orudje.mo;
+    fajl<< kaka.orudje.mo<<endl;
     fajl.close();
     }
     else
     {
     fajl.open("Karater.txt",ios_base::app);
-    fajl<<kaka<<kaka.orudje.getId();
+    fajl<<kaka<<kaka.orudje.getId()<<endl;
     fajl.close();
 
     fajl.open("Oruzije_lista.txt",ios_base::app);
-    fajl<<kaka.orudje<<kaka.orudje.mo.getID();
+    fajl<<kaka.orudje<<kaka.orudje.mo.getID()<<endl;
     fajl.close();
 
     fajl.open("Moc_Lista.txt",ios_base::app);
-    fajl<<kaka.orudje.mo;
+    fajl<<kaka.orudje.mo<<endl;
     fajl.close();
     }
 }
@@ -138,7 +139,7 @@ void zapocniIgricu()
     ucitajKaratere(projeka.SaveFile[SAVEFILENB]->kaka,SAVEFILENB);
     projeka.SaveFile[SAVEFILENB]->CharStartPlaceNivo1();
     int hpkara=projeka.SaveFile[SAVEFILENB]->kaka.getHp();
-    int pozicija1,pozicija2,uspesno2,pom=0;
+    int pozicija1,pozicija2,uspesno2,pom=0,brm=0;
     bool uspesno;
     do
     {
@@ -184,10 +185,15 @@ void zapocniIgricu()
         }
         //system("cls");
     }while(rad!=0 && hpkara>0 && pom<4);
+    brm=brm+pom;
     for(i=0;i<SAVEFILENB;i++)
     {
-        Karakter k=projeka.SaveFile[i]->kaka;
-        upisisve(k,i);
+        upisisve(projeka.SaveFile[i]->kaka,i);
     }
+    ofstream fajl;
+    fajl.open("Izlaz.txt");
+    fajl<<brm;
+    fajl.close();
+
 }
 #endif // FE_IGRICA_HPP_INCLUDED

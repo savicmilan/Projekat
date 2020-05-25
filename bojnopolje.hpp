@@ -13,9 +13,8 @@ protected:
     int polje[11][11];
     int primljeni_dmg=5;
     int hpn=10;
-
 public:
-    Karakter kaka;
+
     void popuniMapu()
     {
         int i,j;
@@ -27,22 +26,19 @@ public:
             }
         }
     }
-    Karakter getKaka()
+    int pozicija(int x, int y)
     {
-        return kaka;
+        return polje[x][y];
     }
-    bool pomeriSe(int x,int y)
+    bool pomeriSe(int x,int y, int r,int xi, int yi)
     {
-        int xi,yi,r;
-        xi=kaka.getX();
-        yi=kaka.getY();
-        r=kaka.getRange();//OVDE SE KORISTI STATICKO POLJE
-        if(((xi-x<=r)||(xi-x<=-r)) && ((yi-y<=r)||(yi-y<=-r)) && polje[x][y]==0)
+        //cout<<x<<y<<xi<<yi;
+        if(((xi-x<=r)||(xi-x>=-r)) && ((yi-y<=r)||(yi-y>=-r)) && polje[x][y]==0)
         {
             polje[xi][yi]=0;
-            kaka.setX(x);
-            kaka.setY(y);
             polje[x][y]=1;
+            //cout<<polje[xi][yi];
+            //cout<<polje[x][y];
             return true;
         }
         else
@@ -50,75 +46,26 @@ public:
             return false;
         }
     }
-    int Napadni(int x, int y)
+    int Napadni(int x, int y, int r, int xi, int yi, int damage)
     {
-        int xi,yi,r,c;
-        xi=kaka.getX();
-        yi=kaka.getY();
-        r=kaka.getRange();//OVDE SE KORISTI STATICKO POLJE
+        //cout<<x<<y<<xi<<yi<<damage<<endl;
         if(((xi-x<=r)||(xi-x<=-r)) && ((yi-y<=r)||(yi-y<=-r)) && polje[x][y]==2)
         {
-            hpn=hpn-kaka.getSnaga();
-            kaka.orudje.smanjiDur();
+            hpn=hpn-damage;
             cout<<hpn;
-            //cout<<kaka.getSnaga();
-            //cout<<kaka.getHp();
             if(hpn<=0)
             {
                 polje[x][y]=0;
+                //cout<<polje[x][y];
                 hpn=10;
-                return 1;
+                return 0;
             }
             else
             {
-                c=kaka.getHp();
-                //cout<<c;
-                c=c-primljeni_dmg;
-                //cout<<c;
-                kaka.setHP(c);
-                return 2;
+                return primljeni_dmg;
             }
         }
-        else
-        {
-            return 3;
-        }
-    }
-    int NapadniSMoc(int x, int y)
-    {
-    int xi,yi,r,c;
-        xi=kaka.getX();
-        yi=kaka.getY();
-        r=kaka.getRange();//OVDE SE KORISTI STATICKO POLJE
-        //cout<<hpn;
-        if(((xi-x<=r)||(xi-x<=-r)) && ((yi-y<=r)||(yi-y<=-r)) && polje[x][y]==2)
-        {
-            hpn=hpn-kaka.orudje.mo.getPow();
-            //cout<<hpn;
-            kaka.orudje.mo.IskoristiMoc();
-            c=kaka.orudje.getDur();
-            c=c-kaka.orudje.mo.getDurDown();
-            kaka.orudje.setDur(c);
-            if(hpn<=0)
-            {
-                polje[x][y]=0;
-                hpn=10;
-                return 1;
-            }
-            else
-            {
-                c=kaka.getHp();
-                //cout<<c;
-                c=c-primljeni_dmg;
-                //cout<<c;
-                kaka.setHP(c);
-                return 2;
-            }
-        }
-        else
-        {
-            return 3;
-        }
+            return 0;
     }
     int getID()const
     {
@@ -127,8 +74,6 @@ public:
     void CharStartPlaceNivo1()
     {
         polje[5][5]=1;
-        kaka.setX(5);
-        kaka.setY(5);
         polje[1][1]=2;
         polje[1][9]=2;
         polje[9][1]=2;

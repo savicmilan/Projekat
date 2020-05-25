@@ -11,19 +11,22 @@ private:
     string oruzijee;
     int durability;
     int jacina;
+    int mocid;
 public:
-    Moc mo;
+
     Oruzije()
     {
         oruzijee="mac";
         durability=MAXX;
         jacina=6;
+        mocid=0;
     }
-    Oruzije(string oruz, int dd, int jj)
+    Oruzije(string oruz, int dd, int jj, int m)
     {
         oruzijee=oruz;
         durability=dd;
         jacina=jj;
+        mocid=m;
     }
     Oruzije(const Oruzije& o)
     {
@@ -31,7 +34,6 @@ public:
         durability=o.durability;
         jacina=o.jacina;
     }
-
     void smanjiDur()
     {
         if(durability!=0)
@@ -54,11 +56,6 @@ public:
         jacina=jacina+x;
     }
     //ovo ostri oruzije ali malo bolje nego ono ranije, ovo bi trebalo da se otkljuca kasnije u igrici
-    void MocDown()
-    {
-        int c=mo.getDurDown();
-        durability=durability-c;
-    }
     int getJacina()const
     {
         return jacina;
@@ -67,20 +64,28 @@ public:
     {
         return durability;
     }
-    int ProveriDur()
+    bool ProveriDur()
     {
-        if(durability==0)
+        if(durability<=0)
         {
-            return 0;
+            return false;
         }
         else
         {
-            return 1;
+            return true;
         }
     }
+
     void setDur(int d)
     {
         durability=d;
+    }
+    void smanjiDurZA(int d)
+    {
+        if(durability!=0)
+        {
+            durability=-d;
+        }
     }
     void setIme(string v)
     {
@@ -94,27 +99,29 @@ public:
     {
         id=idd;
     }
-    Moc getMoc()const
-    {
-        return mo;
-    }
+
     friend ostream& operator<<(ostream& izlaz, Oruzije& o)
     {
-        izlaz<<o.id<<','<<o.oruzijee<<','<<o.durability<<','<<o.jacina<<',';
+        izlaz<<o.id<<','<<o.oruzijee<<','<<o.jacina<<','<<o.durability<<','<<o.mocid<<endl;
         return izlaz;
     }
     void ispisi()
     {
-        cout<<id<<oruzijee<<durability<<jacina;
+        cout<<id<<oruzijee<<jacina<<durability;
     }
-    int getId()
+    int getId() const
     {
         return id;
     }
-};
-
-
-void ucitajOruzije(Oruzije& o, int BrojLinije)
+    void setMocid(int x)
+    {
+        mocid=x;
+    }
+    int getMocID()const
+    {
+        return mocid;
+    }
+    void ucitajOruzije(int BrojLinije)
 {
         string n="Oruzije_lista.txt";
         string linija;
@@ -130,14 +137,14 @@ void ucitajOruzije(Oruzije& o, int BrojLinije)
                 {
                     result = splitSen(linija);
                     x=stoi(result[0]);
-                    o.setId(x);
-                    o.setIme(result[1]);
+                    id=x;
+                    oruzijee=(result[1]);
                     x=stoi(result[2]);
-                    o.setDur(x);
+                    jacina=x;
                     x=stoi(result[3]);
-                    o.setJacina(x);
+                    durability=x;
                     x=stoi(result[4]);
-                    ucitajMoci(o.mo,x);
+                    mocid=x;
                 }
                 i++;
             }
@@ -146,4 +153,8 @@ void ucitajOruzije(Oruzije& o, int BrojLinije)
         else
             cout << "Error 1";
 }
+
+};
+
+
 #endif // ORUZIJE_HPP_INCLUDED

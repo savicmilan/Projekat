@@ -40,7 +40,8 @@ public:
     }
     void IskoristiMoc()
     {
-        durMoc--;
+        if(durMoc!=0)
+            durMoc--;
     }
     int getPow()const
     {
@@ -76,7 +77,37 @@ public:
         izlaz<<m.id<<','<<m.ime<<','<<m.power<<','<<m.durMoc<<','<<m.durDown<<endl;
         return izlaz;
     }
-
+    void ucitajMoci(int BrojLinije)
+    {
+        string n="Moc_Lista.txt";
+        string linija;
+        vector<string> result;
+        ifstream fajl (n);
+        int i=0;
+        if (fajl.is_open())
+        {
+            while ( getline (fajl,linija) && i<=BrojLinije) //you need to refine this its not finished yet
+            {
+                if (linija!="")
+                {
+                    result = splitSen(linija);
+                    int x=stoi(result[0]);
+                    id=(x);
+                    ime=(result[1]);
+                    x=stoi(result[2]);
+                    power=(x);
+                    x=stoi(result[3]);
+                    durMoc=(x);
+                    x=stoi(result[4]);
+                    durDown=(x);
+                }
+                i++;
+            }
+            fajl.close();
+        }
+        else
+            cout << "Error 1";
+    }
 
 };
 void ucitajMoci(Moc& m, int BrojLinije)

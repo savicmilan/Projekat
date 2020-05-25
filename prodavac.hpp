@@ -14,7 +14,7 @@ public:
     {
         cena=1000;
     }
-    Prodavac(string v, int d, int j, int c): proizvod(v,d,j)
+    Prodavac(string v, int d, int j, int c, int mm): proizvod(v,d,j,mm)
     {
         cena= c;
     }
@@ -35,7 +35,7 @@ class Misija: public Prodavac
 protected:
     Prica pric;
 public:
-    Misija(string v, int d, int j, int c,string s): Prodavac(v,d,j,c),pric(s)
+    Misija(string v, int d, int j, int c,int mm,string s): Prodavac(v,d,j,c,mm),pric(s)
     {
 
     }

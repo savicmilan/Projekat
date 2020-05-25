@@ -16,25 +16,31 @@ class Karakter
         static int range;
         int X;
         int Y;
+        int idoruzije;
     public:
-        Oruzije orudje;
         Karakter()
         {
             id=1;
             ime="Djura";
             hp= 30;
             level=1;
-            snaga=4+orudje.getJacina();
+            snaga=4;
             X=1;
             Y=1;
+
         }
-        void proveriOruzije()
+        void setCords(int xx, int yy)
         {
-            int c=orudje.ProveriDur();
-            if(c==0)
-            {
-                snaga=snaga-orudje.getJacina();
-            }
+            X=xx;
+            Y=yy;
+        }
+        void powerUP(int x)
+        {
+            snaga=snaga+x;
+        }
+        void powerDown(int x)
+        {
+            snaga=snaga-x;
         }
         void smanjiHP(int hpminus)
         {
@@ -88,59 +94,68 @@ class Karakter
         {
             return snaga;
         }
-        int getOrudjeid()
-        {
-            int x;
-            x=orudje.getId();
-            return x;
-        }
+
         friend ostream& operator<<(ostream& izlaz, Karakter& k)
         {
-            izlaz<<k.id<<','<<k.ime<<','<<k.hp<<','<<k.level<<','<<k.snaga<<','<<k.X<<','<<k.Y<<',';
+            izlaz<<k.id<<','<<k.ime<<','<<k.hp<<','<<k.level<<','<<k.snaga<<','<<k.X<<','<<k.Y<<','<<k.idoruzije<<endl;
             return izlaz;
         }
         int getHp()
         {
             return hp;
         }
-};
-void ucitajKaratere(Karakter& k, int BrojLinije)
-{
-        string n="Karater.txt";
-        string linija;
-        vector<string> result;
-        ifstream fajl (n);
-        int i=0;
-        int x;
-        if (fajl.is_open())
+        void setOrId(int x)
         {
-            while ( getline (fajl,linija) && i<=BrojLinije) //you need to refine this its not finished yet
+            idoruzije=x;
+        }
+        int getVoidID()const
+        {
+            return idoruzije;
+        }
+
+        void ucitajKaratere(int BrojLinije)
+        {
+            BrojLinije++;
+            string n="Karater.txt";
+            string linija;
+            vector<string> result;
+            ifstream fajl (n);
+            int i=0;
+            int x;
+            if (fajl.is_open())
             {
-                if (linija!="")
-                {
-                    result = splitSen(linija);
-                    x=stoi(result[0]);
-                    k.setId(x);
-                    k.setIme(result[1]);
-                    x=stoi(result[2]);
-                    k.setHP(x);
-                    x=stoi(result[3]);
-                    k.setLVL(x);
-                    x=stoi(result[4]);
-                    x=stoi(result[5]);
-                    k.setX(x);
-                    x=stoi(result[6]);
-                    k.setY(x);
-                    x=stoi(result[7]);
-                    ucitajOruzije(k.orudje,x);
-                    x=x+k.orudje.getJacina();
-                    k.setJacina(x);
+                while ( getline (fajl,linija) && i<BrojLinije) //you need to refine this its not finished yet
+                    {
+                        if (linija!="")
+                        {
+                            result = splitSen(linija);
+                            x=stoi(result[0]);
+                            //cout<<"s"<<x<<"s";
+                            id=x;
+                            ime=(result[1]);
+                            // cout<<result[1];
+                            x=stoi(result[2]);
+                            hp=x;
+                            x=stoi(result[3]);
+                            level=x;
+                            x=stoi(result[5]);
+                            X=x;
+                            x=stoi(result[6]);
+                            Y=x;
+                            x=stoi(result[7]);
+                            idoruzije=x;
+                            //cout<<k.orudje;
+                            // cout<<"z"<<x;
+                            x=stoi(result[4]);
+                            setJacina(x);
+                    }
+                    i++;
                 }
-                i++;
-            }
             fajl.close();
         }
-        else
-            cout << "Error 1";
-}
+            else
+                cout << "Error 1";
+        }
+};
+
 #endif // KARAKTER_HPP_INCLUDED

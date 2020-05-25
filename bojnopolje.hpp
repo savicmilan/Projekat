@@ -11,10 +11,14 @@ class Bojnopolje
 protected:
     int id;
     int polje[11][11];
-    int primljeni_dmg=5;
-    int hpn=10;
+    int primljeni_dmg=10;
+    int poljee[11][11];
 public:
-
+    Bojnopolje()
+    {
+        id=0;
+        primljeni_dmg=10;
+    }
     void popuniMapu()
     {
         int i,j;
@@ -51,13 +55,12 @@ public:
         //cout<<x<<y<<xi<<yi<<damage<<endl;
         if(((xi-x<=r)||(xi-x<=-r)) && ((yi-y<=r)||(yi-y<=-r)) && polje[x][y]==2)
         {
-            hpn=hpn-damage;
-            cout<<hpn;
-            if(hpn<=0)
+            poljee[x][y]=poljee[x][y]-damage;
+            //cout<<hpn;
+            if(poljee[x][y]<=0)
             {
                 polje[x][y]=0;
                 //cout<<polje[x][y];
-                hpn=10;
                 return 0;
             }
             else
@@ -65,7 +68,6 @@ public:
                 return primljeni_dmg;
             }
         }
-            return 0;
     }
     int getID()const
     {
@@ -75,6 +77,10 @@ public:
     {
         polje[5][5]=1;
         polje[1][1]=2;
+        poljee[1][1]=10;
+        poljee[1][9]=10;
+        poljee[9][1]=10;
+        poljee[9][9]=10;
         polje[1][9]=2;
         polje[9][1]=2;
         polje[9][9]=2;

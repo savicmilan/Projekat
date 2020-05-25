@@ -190,11 +190,12 @@ void zapocniIgricu()
         cout<<"izaberi radnju"<<endl<<"1) Pomeranje"<<endl<<"2) napad"<<endl<<"3) Iskoristi moc"<<endl;
         cin>>rad;
         //cout<<rad;
-        /*pokvareno=projeka.Weapon[SAVEFILENB].ProveriDur();
+        pokvareno=projeka.Weapon[SAVEFILENB].ProveriDur();
         if(pokvareno==false)
         {
             projeka.Charcter[SAVEFILENB].powerDown(test);
-        }*/
+            projeka.Weapon[SAVEFILENB].setJacina(0);
+        }
         switch(rad)
         {
             case 1:
@@ -226,6 +227,10 @@ void zapocniIgricu()
                     int snaga=projeka.Charcter[SAVEFILENB].getSnaga();
                     int nemaviseimena;
                     nemaviseimena=projeka.SaveFile[SAVEFILENB]->Napadni(pozicija1,pozicija2,r,xi,yi,snaga);
+                    if(nemaviseimena==0)
+                    {
+                        pom++;
+                    }
                     projeka.Charcter[SAVEFILENB].smanjiHP(nemaviseimena);
                     projeka.Weapon[SAVEFILENB].smanjiDur();
                     break;
@@ -241,6 +246,10 @@ void zapocniIgricu()
                     int snaga=projeka.Power[SAVEFILENB].getPow();
                     int nemaviseimena;
                     nemaviseimena=projeka.SaveFile[SAVEFILENB]->Napadni(pozicija1,pozicija2,r,xi,yi,snaga);
+                    if(nemaviseimena==0)
+                    {
+                        pom++;
+                    }
                     projeka.Charcter[SAVEFILENB].smanjiHP(nemaviseimena);
                     int mocdurdown=projeka.Power[SAVEFILENB].getDurDown();
                     projeka.Weapon[SAVEFILENB].smanjiDurZA(mocdurdown);
@@ -260,5 +269,6 @@ void zapocniIgricu()
     {
         upisisve(projeka.Charcter[j],projeka.Weapon[j],projeka.Power[j],j);
     }
+    cout<<"KRAJ IGRE (mrzelo me je da stavljam lepsi ispis)";
 }
 #endif // FE_IGRICA_HPP_INCLUDED

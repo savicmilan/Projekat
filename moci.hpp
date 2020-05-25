@@ -110,7 +110,7 @@ public:
     }
 
 };
-void ucitajMoci(Moc& m, int BrojLinije)
+/*void ucitajMoci(Moc& m, int BrojLinije)
 {
         string n="Moc_Lista.txt";
         string linija;
@@ -140,7 +140,7 @@ void ucitajMoci(Moc& m, int BrojLinije)
         }
         else
             cout << "Error 1";
-}
+}*/
 void citajFaijlMoci(Moc moc[])
 {
     string ime="Moc_Lista.txt";

@@ -160,7 +160,7 @@ void zapocniIgricu()
 
     }
     int SAVEFILENB=MainMenu();
-    //system("cls");
+    system("cls");
     if(SAVEFILENB==2)
     {
         return;
@@ -168,9 +168,9 @@ void zapocniIgricu()
     chooseSavefile(SAVEFILENB);
     cout<< SAVEFILENB;
     //SAVEFILENB-=1;
-    //system("cls");
-    //PressEnterToContinue();
-    //system("cls");
+    system("cls");
+    PressEnterToContinue();
+    system("cls");
     int test=projeka.Weapon[SAVEFILENB].getJacina();
     projeka.Charcter[SAVEFILENB].powerUP(test);
     projeka.SaveFile[SAVEFILENB]->CharStartPlaceNivo1();
@@ -189,7 +189,7 @@ void zapocniIgricu()
         cout<<projeka.Power[SAVEFILENB]<<endl;
         cout<<"izaberi radnju"<<endl<<"1) Pomeranje"<<endl<<"2) napad"<<endl<<"3) Iskoristi moc"<<endl;
         cin>>rad;
-        cout<<rad;
+        //cout<<rad;
         /*pokvareno=projeka.Weapon[SAVEFILENB].ProveriDur();
         if(pokvareno==false)
         {
@@ -208,7 +208,7 @@ void zapocniIgricu()
                     //cout<< xi <<yi;
                     pomm=projeka.SaveFile[SAVEFILENB]->pozicija(pozicija1,pozicija2);
                     uspesno=projeka.SaveFile[SAVEFILENB]->pomeriSe(pozicija1,pozicija2,r,xi,yi);
-                    cout<<pomm;
+                    //cout<<pomm;
                     if(pomm==0)
                     {
                         projeka.Charcter[SAVEFILENB].setCords(pozicija1,pozicija2);
@@ -248,6 +248,7 @@ void zapocniIgricu()
                     break;
                 }
         }
+        system("cls");
     }while(rad!=0 && hpkara>0 && pom<4);
     brm=brm+pom;
     ofstream fajl;
